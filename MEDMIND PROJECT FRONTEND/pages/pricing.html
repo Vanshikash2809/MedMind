@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pricing - MedMind</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background-color: #f9f9fb;
+      color: #333;
+      padding: 20px;
+    }
+
+    header {
+      background-color: #4a90e2;
+      color: white;
+      padding: 20px 40px;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 10px;
+    }
+
+    .pricing-container {
+      display: flex;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+
+    .plan {
+      background-color: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+      width: 300px;
+      text-align: center;
+      transition: 0.3s ease;
+    }
+
+    .plan:hover {
+      transform: translateY(-5px);
+    }
+
+    .plan h2 {
+      color: #4a90e2;
+      margin-bottom: 10px;
+    }
+
+    .price {
+      font-size: 28px;
+      font-weight: 600;
+      margin: 15px 0;
+      color: #222;
+    }
+
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 20px 0;
+    }
+
+    ul li {
+      margin-bottom: 10px;
+    }
+
+    button {
+      background-color: #4a90e2;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 50px;
+      color: #666;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>MedMind Pricing</h1>
+    <p>Choose a plan that fits your needs. All in INR ₹</p>
+  </header>
+
+  <section class="pricing-container">
+    <div class="plan">
+      <h2>Basic</h2>
+      <p class="price">₹199 / month</p>
+      <ul>
+        <li>Access to AI Chatbot</li>
+        <li>Daily Mood Tracking</li>
+        <li>Weekly Reports</li>
+      </ul>
+      <button>Get Started</button>
+    </div>
+
+    <div class="plan">
+      <h2>Standard</h2>
+      <p class="price">₹499 / month</p>
+      <ul>
+        <li>Everything in Basic</li>
+        <li>1 Video Consultation/month</li>
+        <li>Priority Chat Support</li>
+      </ul>
+      <button>Subscribe</button>
+    </div>
+
+    <div class="plan">
+      <h2>Premium</h2>
+      <p class="price">₹999 / month</p>
+      <ul>
+        <li>Everything in Standard</li>
+        <li>4 Video Consultations/month</li>
+        <li>24/7 Therapist Access</li>
+        <li>Personal Mood Counselor</li>
+      </ul>
+      <button>Join Now</button>
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; 2025 MedMind. Affordable Mental Health for All.</p>
+  </footer>
+</body>
+
+</html>

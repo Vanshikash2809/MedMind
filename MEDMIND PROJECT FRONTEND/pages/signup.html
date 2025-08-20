@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Login | MedMind</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap');
+
+    * {
+      box-sizing: border-box;
+    }
+    body, html {
+      height: 100%;
+      margin: 0;
+      font-family: 'Nunito', sans-serif;
+      background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?ixlib=rb-4.0.3&auto=format&fit=crop&w=1470&q=80') no-repeat center center fixed;
+      background-size: cover;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: #fff;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(38, 70, 83, 0.75);
+      z-index: 0;
+    }
+
+    .container {
+      position: relative;
+      background: rgba(255, 255, 255, 0.95);
+      padding: 40px 50px;
+      border-radius: 15px;
+      width: 380px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+      color: #263c3f;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    h2 {
+      margin-bottom: 25px;
+      font-weight: 700;
+      text-align: center;
+      color: #4c8eaf;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+
+    input[type="email"],
+    input[type="password"],
+    input[type="text"] {
+      width: 100%;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+      outline: none;
+      font-family: inherit;
+    }
+
+    input[type="email"]:focus,
+    input[type="password"]:focus,
+    input[type="text"]:focus {
+      border-color: #4c8eaf;
+      box-shadow: 0 0 6px #4c8eaf;
+    }
+
+    button {
+      width: 100%;
+      background-color: #4c8eaf;
+      color: white;
+      font-weight: 700;
+      padding: 14px 0;
+      font-size: 18px;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #4c8eaf;
+    }
+
+    .forgot-password {
+      text-align: right;
+      margin-top: -15px;
+      margin-bottom: 20px;
+      font-size: 14px;
+    }
+
+    .forgot-password a {
+      color: #4c8eaf;
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .forgot-password a:hover {
+      text-decoration: underline;
+    }
+
+    .toggle-link {
+      text-align: center;
+      margin-top: 15px;
+      font-size: 15px;
+      color: #555;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .toggle-link span {
+      color: #4c8eaf;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    form {
+      transition: transform 0.4s ease, opacity 0.4s ease;
+    }
+
+    /* Initially show login, hide signup */
+    #signupForm {
+      position: absolute;
+      top: 0;
+      left: 100%;
+      width: 100%;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    #signupForm.active {
+      left: 0;
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    #loginForm.active {
+      left: 0;
+      opacity: 1;
+      pointer-events: auto;
+      position: relative;
+    }
+
+    #loginForm.inactive {
+      left: -100%;
+      opacity: 0;
+      pointer-events: none;
+      position: absolute;
+      top: 0;
+    }
+
+    @media (max-width: 420px) {
+      .container {
+        width: 90%;
+        padding: 30px 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+   
+
+  <div class="overlay"></div>
+
+  <div class="container" role="main" aria-label="Authentication forms">
+
+    <!-- Login Form -->
+    <form id="loginForm" class="active" onsubmit="handleLogin(event)" aria-hidden="false">
+      <h2>Login to MedMind</h2>
+
+      <label for="loginEmail">Email Address</label>
+      <input type="email" id="loginEmail" name="email" placeholder="you@example.com" required autocomplete="username" />
+
+      <label for="loginPassword">Password</label>
+      <input type="password" id="loginPassword" name="password" placeholder="Your password" required autocomplete="current-password" />
+
+      <div class="forgot-password">
+        <a href="#">Forgot Password?</a>
+      </div>
+
+      <button type="submit">Login</button>
+
+      <div class="toggle-link" onclick="toggleForms()">
+        Don't have an account? <span>Sign Up</span>
+      </div>
+    </form>
+
+    <!-- Sign Up Form -->
+    <form id="signupForm" class="inactive" onsubmit="handleSignUp(event)" aria-hidden="true">
+      <h2>Create Account</h2>
+
+      <label for="signupName">Full Name</label>
+      <input type="text" id="signupName" name="name" placeholder="Your full name" required autocomplete="name" />
+
+      <label for="signupEmail">Email Address</label>
+      <input type="email" id="signupEmail" name="email" placeholder="you@example.com" required autocomplete="email" />
+
+      <label for="signupPassword">Password</label>
+      <input type="password" id="signupPassword" name="password" placeholder="Create a password" required autocomplete="new-password" />
+
+      <button type="submit">Sign Up</button>
+
+      <div class="toggle-link" onclick="toggleForms()">
+        Already have an account? <span>Login</span>
+      </div>
+    </form>
+
+  </div>
+
+  <script>
+    const loginForm = document.getElementById('loginForm');
+    const signupForm = document.getElementById('signupForm');
+
+    function toggleForms() {
+      if (loginForm.classList.contains('active')) {
+        // Switch to sign up
+        loginForm.classList.remove('active');
+        loginForm.classList.add('inactive');
+        loginForm.setAttribute('aria-hidden', 'true');
+
+        signupForm.classList.remove('inactive');
+        signupForm.classList.add('active');
+        signupForm.setAttribute('aria-hidden', 'false');
+      } else {
+        // Switch to login
+        signupForm.classList.remove('active');
+        signupForm.classList.add('inactive');
+        signupForm.setAttribute('aria-hidden', 'true');
+
+        loginForm.classList.remove('inactive');
+        loginForm.classList.add('active');
+        loginForm.setAttribute('aria-hidden', 'false');
+      }
+    }
+
+    function handleLogin(event) {
+      event.preventDefault();
+      const form = event.target;
+      alert(`Welcome back, ${form.email.value}!`);
+      form.reset();
+      // TODO: Add real login logic here
+    }
+
+    function handleSignUp(event) {
+      event.preventDefault();
+      const form = event.target;
+      alert(`Thanks for signing up, ${form.name.value}!`);
+      form.reset();
+      // TODO: Add real sign up logic here
+      toggleForms(); // Switch back to login after sign up
+    }
+  </script>
+</body>
+</html>

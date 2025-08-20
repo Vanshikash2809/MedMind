@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>MedMind - Home</title>
+  <link rel="stylesheet" href="medmind.css" />
+  <style>
+    /* Navbar layout tweaks */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background-color: #fff;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    }
+    .logo h1 a {
+      color: #4c8eaf;
+      text-decoration: none;
+    }
+    nav ul {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    nav ul li a {
+      text-decoration: none;
+      color: #333;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s ease;
+    }
+    nav ul li a:hover {
+      background-color: #e8f5e9;
+      color: #4c8eaf;
+    }
+    .btn-signup {
+      background-color: #4c8eaf;
+      color: white !important;
+      font-weight: bold;
+    }
+    .btn-signup:hover {
+      background-color: #4c8eaf;
+    }
+
+    /* Search box styled as chat input */
+    .search-chat-container {
+      position: relative;
+      width: 280px;
+      margin-right: 20px;
+    }
+    #searchInput {
+      width: 100%;
+      padding: 8px 12px;
+      border: 2px solid #4c8eaf;
+      border-radius: 25px;
+      outline: none;
+      font-size: 14px;
+      transition: border-color 0.3s ease;
+    }
+    #searchInput:focus {
+      border-color: #4c8eaf;
+      box-shadow: 0 0 8px #19323e;
+    }
+    /* Chatbot style suggestions below input */
+    #chatbotSuggestions {
+      position: absolute;
+      top: 38px;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0);
+      border: 1px solid #cccccc25;
+      border-radius: 6px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      max-height: 150px;
+      overflow-y: auto;
+      display: none;
+      z-index: 1000;
+    }
+    #chatbotSuggestions div {
+      padding: 8px 12px;
+      cursor: pointer;
+    }
+    #chatbotSuggestions div:hover {
+      background-color: #e8e9f54a;
+    }
+
+    /* Settings dropdown */
+    .settings-dropdown {
+      position: relative;
+    }
+    #settingsBtn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      font-size: 1.6rem;
+      color: #4c8eaf;
+      padding: 6px 8px;
+      border-radius: 50%;
+      transition: background-color 0.3s ease;
+    }
+    #settingsBtn:hover {
+      background-color: #e8f5e9;
+    }
+    #settingsPanel {
+      display: none;
+      position: absolute;
+      top: 40px;
+      right: 0;
+      width: 220px;
+      background: white;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+      border-radius: 8px;
+      padding: 15px;
+      z-index: 2000;
+      font-family: Arial, sans-serif;
+    }
+    #settingsPanel h4 {
+      margin-top: 0;
+      margin-bottom: 10px;
+      color: #4c8eaf;
+      font-weight: bold;
+    }
+    #settingsPanel label {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      margin-bottom: 12px;
+      font-size: 14px;
+    }
+    #settingsPanel button.option-btn {
+      width: 100%;
+      text-align: left;
+      background: none;
+      border: none;
+      padding: 8px 6px;
+      font-size: 14px;
+      color: #333;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: background-color 0.2s ease;
+    }
+    #settingsPanel button.option-btn:hover {
+      background-color: #e8f5e9;
+      color: #4d9ba7;
+    }
+
+  </style>
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="logo">
+        <h1><a href="index.html">MedMind</a></h1>
+      </div>
+
+      <div style="display:flex; align-items:center;">
+        <!-- Search as chatbot input -->
+        <div class="search-chat-container">
+          <input type="text" id="searchInput" placeholder="Ask MedMind..." autocomplete="off" />
+          <div id="chatbotSuggestions"></div>
+        </div>
+
+        <ul>
+          <li><a href="index.html">Home</a></li>
+          <li><a href="features.html">Features</a></li>
+          <li><a href="how-it-works.html">How It Works</a></li>
+          <li><a href="pricing.html">Pricing</a></li>
+          <li><a href="contact.html">Contact</a></li>
+          <li><a href="signup.html" class="btn-signup">Signup</a></li>
+        </ul>
+
+        <!-- Settings -->
+        <div class="settings-dropdown">
+          <button id="settingsBtn" aria-label="Settings">⚙️</button>
+          <div id="settingsPanel" role="region" aria-label="Settings Panel" tabindex="-1">
+            <h4>Settings</h4>
+            <label>
+              <input type="checkbox" id="darkModeToggle" /> Dark Mode
+            </label>
+            <button class="option-btn" onclick="alert('Account Settings Clicked')">Account Settings</button>
+            <button class="option-btn" onclick="alert('Profile Clicked')">Profile</button>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-content">
+      <h2>Transform Your Mental Health with AI-Powered Support</h2>
+      <p>Get personalized therapy and emotional support anytime, anywhere.</p>
+      <a href="features.html" class="btn-primary">Explore Features</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-content">
+      <h3>MedMind</h3>
+      <p>Empowering individuals with AI-driven mental health support.</p>
+      <ul class="socials">
+        <li><a href="https://www.facebook.com/login/"><img src="fb.logo.jpg" alt="Facebook" /></a></li>
+        <li><a href="https://x.com/i/flow/login"><img src="twitter.logo.jpg" alt="Twitter" /></a></li>
+        <li><a href="https://www.instagram.com/accounts/login/?hl=en"><img src="insta.logo.jpg" alt="Instagram" /></a></li>
+      </ul>
+    </div>
+    <p>© 2025 MedMind. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Show/hide settings panel on settings button click
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsPanel = document.getElementById('settingsPanel');
+
+    settingsBtn.addEventListener('click', () => {
+      const isVisible = settingsPanel.style.display === 'block';
+      settingsPanel.style.display = isVisible ? 'none' : 'block';
+      if (!isVisible) settingsPanel.focus();
+    });
+
+    // Close settings if clicked outside
+    document.addEventListener('click', (e) => {
+      if (!settingsPanel.contains(e.target) && e.target !== settingsBtn) {
+        settingsPanel.style.display = 'none';
+      }
+    });
+
+    // Dark Mode toggle
+    const darkModeToggle = document.getElementById('darkModeToggle');
+    darkModeToggle.addEventListener('change', (e) => {
+      if (e.target.checked) {
+        document.body.style.backgroundColor = '#121212';
+        document.body.style.color = '#eee';
+      } else {
+        document.body.style.backgroundColor = '';
+        document.body.style.color = '';
+      }
+    });
+
+    // Chatbot-like search suggestions logic
+    const searchInput = document.getElementById('searchInput');
+    const suggestionsBox = document.getElementById('chatbotSuggestions');
+
+    // Example suggestions to simulate chatbot features
+    const suggestions = [
+      'How to manage anxiety?',
+      'Tips for better sleep',
+      'What is cognitive behavioral therapy?',
+      'Meditation techniques',
+      'Book a session with therapist',
+      'Symptoms of depression',
+      'Stress relief exercises',
+      'Mindfulness activities',
+      'Contact support',
+      'Pricing plans',
+    ];
+
+    searchInput.addEventListener('input', () => {
+      const query = searchInput.value.trim().toLowerCase();
+      if (!query) {
+        suggestionsBox.style.display = 'none';
+        return;
+      }
+      const filtered = suggestions.filter(item =>
+        item.toLowerCase().includes(query)
+      );
+      if (filtered.length === 0) {
+        suggestionsBox.style.display = 'none';
+        return;
+      }
+      suggestionsBox.innerHTML = filtered
+        .map(item => `<div tabindex="0">${item}</div>`)
+        .join('');
+      suggestionsBox.style.display = 'block';
+    });
+
+    // When suggestion clicked, populate input and alert (simulate chatbot action)
+    suggestionsBox.addEventListener('click', (e) => {
+      if (e.target.tagName === 'DIV') {
+        searchInput.value = e.target.textContent;
+        suggestionsBox.style.display = 'none';
+        alert('You asked: ' + e.target.textContent + '\nThis is a placeholder for chatbot response.');
+      }
+    });
+
+    // Keyboard navigation support for suggestions
+    let selectedIndex = -1;
+    searchInput.addEventListener('keydown', (e) => {
+      const items = suggestionsBox.querySelectorAll('div');
+      if (items.length === 0) return;
+
+      if (e.key === 'ArrowDown') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex + 1) % items.length;
+        items.forEach((item, i) => {
+          item.style.backgroundColor = i === selectedIndex ? '#d0f0d8' : 'white';
+        });
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        selectedIndex = (selectedIndex - 1 + items.length) % items.length;
+        items.forEach((item, i) => {
+          item.style.backgroundColor = i === selectedIndex ? '#d0f0d8' : 'white';
+        });
+      } else if (e.key === 'Enter') {
+        e.preventDefault();
+        if (selectedIndex >= 0) {
+          searchInput.value = items[selectedIndex].textContent;
+          suggestionsBox.style.display = 'none';
+          alert('You asked: ' + items[selectedIndex].textContent + '\nThis is a placeholder for chatbot response.');
+          selectedIndex = -1;
+        }
+      }
+    });
+
+    // Clicking outside closes suggestion box as well
+    document.addEventListener('click', (e) => {
+      if (!suggestionsBox.contains(e.target) && e.target !== searchInput) {
+        suggestionsBox.style.display = 'none';
+        selectedIndex = -1;
+      }
+    });
+  </script>
+</body>
+</html>

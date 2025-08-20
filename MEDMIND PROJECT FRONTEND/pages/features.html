@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Features | MedMind</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    .feature-section {
+      background: white;
+      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .feature-section img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+    }
+    .feature-content {
+      flex: 1;
+    }
+    button {
+      padding: 10px 15px;
+      font-size: 1rem;
+      background: #4c8eaf;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-top: 10px;
+    }
+    button:hover {
+      background: #4c8eaf;
+    }
+  </style>
+</head>
+<body>
+  <h1>Explore Our Features</h1>
+
+  <div class="feature-section">
+    <img src="aichatbot.png.jpg" alt="Chatbot Feature" />
+    <div class="feature-content">
+      <h2>AI Chatbot</h2>
+      <p>Talk to our mental health support chatbot for instant help.</p>
+      <button onclick="location.href='chatbot.html'">Try Chatbot</button>
+    </div>
+  </div>
+
+  <div class="feature-section">
+    <img src="video-conferencing.jpg" alt="Video Conferencing Feature" />
+    <div class="feature-content">
+      <h2>Video Conferencing</h2>
+      <p>Connect with certified therapists via secure video calls.</p>
+      <button onclick="location.href='video.html'">Start Session</button>
+    </div>
+  </div>
+
+  <div class="feature-section">
+    <img src="moodtracking.jpg" alt="Mood Tracking Feature" />
+    <div class="feature-content">
+      <h2>Mood Tracking</h2>
+      <p>Track your emotional journey with daily mood logs and graphs.</p>
+      <button onclick="location.href='mood.html'">Track Your Mood</button>
+    </div>
+  </div>
+
+  <div class="feature-section">
+    <img src="therapy.png.jpg" alt="Teletherapy Feature" />
+    <div class="feature-content">
+      <h2>Teletherapy</h2>
+      <p>Receive personalized therapy sessions from licensed professionals directly through our secure platform, anytime and anywhere.</p>
+      <button onclick="location.href='teletherapy.html'">Start Teletherapy</button>
+    </div>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>How It Works | MedMind</title>
+  <style>
+    /* Reset & base */
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      background-color: #f9fafb;
+      color: #333;
+      line-height: 1.6;
+    }
+    header {
+      background-color: #4c8eaf;
+      padding: 20px 0;
+      text-align: center;
+      color: white;
+      font-size: 28px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+    }
+    main {
+      max-width: 960px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 10px;
+      color: #4c8eaf;
+    }
+    p.subtitle {
+      text-align: center;
+      color: #555;
+      font-size: 18px;
+      margin-bottom: 50px;
+    }
+    /* Steps container */
+    .steps {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 30px;
+    }
+    .step {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 14px rgba(0,0,0,0.1);
+      flex: 1 1 280px;
+      padding: 30px 25px;
+      text-align: center;
+      transition: transform 0.3s ease;
+      cursor: default;
+    }
+    .step:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+    }
+    .step-icon {
+      background-color: #4c8eaf;
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      color: white;
+      font-weight: 700;
+      font-size: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+    }
+    .step-title {
+      font-size: 22px;
+      font-weight: 600;
+      margin-bottom: 12px;
+      color: #4c8eaf;
+    }
+    .step-desc {
+      font-size: 16px;
+      color: #4a5568;
+    }
+    /* Responsive */
+    @media (max-width: 700px) {
+      .steps {
+        flex-direction: column;
+      }
+      .step {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    MedMind: How It Works
+  </header>
+
+  <main>
+    <h1>How MedMind Helps You</h1>
+    <p class="subtitle">Simple steps to get mental health support from experts anytime, anywhere.</p>
+
+    <section class="steps">
+      <article class="step">
+        <div class="step-icon">1</div>
+        <h2 class="step-title">Create Your Account</h2>
+        <p class="step-desc">
+          Sign up quickly with your email and basic details to personalize your mental wellness journey.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-icon">2</div>
+        <h2 class="step-title">Choose Your Service</h2>
+        <p class="step-desc">
+          Select from chatbot assistance, video therapy, mood tracking, or teletherapy sessions.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-icon">3</div>
+        <h2 class="step-title">Interact & Track</h2>
+        <p class="step-desc">
+          Chat with AI for instant support, join live therapy sessions, and track your mood over time.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-icon">4</div>
+        <h2 class="step-title">Get Expert Help</h2>
+        <p class="step-desc">
+          Book appointments with licensed professionals for personalized guidance and care.
+        </p>
+      </article>
+
+      <article class="step">
+        <div class="step-icon">5</div>
+        <h2 class="step-title">Improve & Reflect</h2>
+        <p class="step-desc">
+          Use progress insights and exercises recommended by experts to enhance your mental health journey.
+        </p>
+      </article>
+    </section>
+  </main>
+</body>
+</html>

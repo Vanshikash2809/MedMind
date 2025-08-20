@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Mood Tracking with History | MedMind</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #f0f8ff;
+      margin: 0; padding: 20px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    h1 {
+      color: #333;
+    }
+    .mood-container {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+      width: 350px;
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    .mood-buttons {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    .mood-button {
+      font-size: 2.5rem;
+      cursor: pointer;
+      transition: transform 0.2s ease;
+      user-select: none;
+    }
+    .mood-button:hover {
+      transform: scale(1.3);
+    }
+    .selected {
+      transform: scale(1.5);
+      filter: drop-shadow(0 0 5px #4caf50);
+    }
+    #message {
+      margin-top: 20px;
+      font-weight: bold;
+      color: #4caf50;
+    }
+    #chartContainer {
+      width: 100%;
+      max-width: 600px;
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    }
+  </style>
+</head>
+<body>
+  <h1>Track Your Mood Today</h1>
+  <div class="mood-container">
+    <p>How are you feeling right now?</p>
+    <div class="mood-buttons">
+      <span class="mood-button" role="img" aria-label="Happy" data-msg="Glad you're feeling happy! 😊" data-value="5">😊</span>
+      <span class="mood-button" role="img" aria-label="Neutral" data-msg="Hope your day gets better! 😐" data-value="3">😐</span>
+      <span class="mood-button" role="img" aria-label="Sad" data-msg="It's okay to feel sad sometimes. 💙" data-value="2">💙</span>
+      <span class="mood-button" role="img" aria-label="Angry" data-msg="Take a deep breath and relax. 😡" data-value="1">😡</span>
+      <span class="mood-button" role="img" aria-label="Excited" data-msg="Awesome! Keep the energy up! 🎉" data-value="4">🎉</span>
+    </div>
+    <div id="message"></div>
+  </div>
+
+  <div id="chartContainer">
+    <canvas id="moodChart"></canvas>
+  </div>
+
+  <!-- Chart.js CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    const buttons = document.querySelectorAll('.mood-button');
+    const messageDiv = document.getElementById('message');
+
+    // Load mood history from localStorage or empty array
+    let moodHistory = JSON.parse(localStorage.getItem('moodHistory')) || [];
+
+    // Chart.js setup
+    const ctx = document.getElementById('moodChart').getContext('2d');
+    const moodChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: moodHistory.map(entry => new Date(entry.date).toLocaleDateString()),
+        datasets: [{
+          label: 'Mood Level',
+          data: moodHistory.map(entry => entry.value),
+          backgroundColor: 'rgba(76, 175, 80, 0.2)',
+          borderColor: '#4caf50',
+          borderWidth: 2,
+          fill: true,
+          tension: 0.3,
+          pointRadius: 5,
+          pointHoverRadius: 7
+        }]
+      },
+      options: {
+        scales: {
+          y: {
+            suggestedMin: 0,
+            suggestedMax: 5,
+            ticks: {
+              stepSize: 1,
+              callback: val => {
+                switch(val){
+                  case 1: return 'Angry';
+                  case 2: return 'Sad';
+                  case 3: return 'Neutral';
+                  case 4: return 'Excited';
+                  case 5: return 'Happy';
+                  default: return '';
+                }
+              }
+            }
+          }
+        }
+      }
+    });
+
+    function updateChart() {
+      moodChart.data.labels = moodHistory.map(entry => new Date(entry.date).toLocaleDateString());
+      moodChart.data.datasets[0].data = moodHistory.map(entry => entry.value);
+      moodChart.update();
+    }
+
+    buttons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        buttons.forEach(b => b.classList.remove('selected'));
+        btn.classList.add('selected');
+
+        const msg = btn.getAttribute('data-msg');
+        const value = parseInt(btn.getAttribute('data-value'));
+        messageDiv.textContent = msg;
+
+        // Add new mood entry with date & value
+        const newEntry = { date: new Date().toISOString(), value: value };
+        moodHistory.push(newEntry);
+
+        // Keep last 20 entries max
+        if (moodHistory.length > 20) moodHistory.shift();
+
+        // Save to localStorage
+        localStorage.setItem('moodHistory', JSON.stringify(moodHistory));
+
+        updateChart();
+      });
+    });
+
+    // If history exists, display last mood message and highlight button
+    if (moodHistory.length > 0) {
+      const lastMood = moodHistory[moodHistory.length - 1].value;
+      buttons.forEach(btn => {
+        if (parseInt(btn.getAttribute('data-value')) === lastMood) {
+          btn.classList.add('selected');
+          messageDiv.textContent = btn.getAttribute('data-msg');
+        }
+      });
+    }
+  </script>
+</body>
+</html>

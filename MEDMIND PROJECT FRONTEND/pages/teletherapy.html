@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Teletherapy | MedMind</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f2f2f2;
+      margin: 0; padding: 0;
+    }
+    header {
+      background: #4c8eaf;
+      padding: 15px;
+      text-align: center;
+      color: white;
+    }
+    main {
+      max-width: 800px;
+      margin: 30px auto;
+      background: white;
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h1, h2 {
+      margin-top: 0;
+    }
+    .info {
+      margin-bottom: 20px;
+    }
+    .start-button {
+      padding: 12px 20px;
+      background-color: #4c8eaf;
+      color: white;
+      font-size: 16px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      margin-bottom: 20px;
+    }
+    .start-button:hover {
+      background-color: #4c8eaf;
+    }
+    /* Consultant accordion styles */
+    .consultants {
+      margin-top: 40px;
+    }
+    .consultant-item {
+      background: #e8f5e9;
+      border-left: 6px solid #4c8eaf;
+      border-radius: 8px;
+      margin-bottom: 15px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+      cursor: pointer;
+      padding: 15px 20px;
+      user-select: none;
+      transition: background-color 0.3s ease;
+    }
+    .consultant-item:hover {
+      background-color: #d0f0d8;
+    }
+    .consultant-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .consultant-name {
+      font-weight: bold;
+      font-size: 1.2em;
+      color: #4c8eaf;
+    }
+    .consultant-specialty {
+      font-style: italic;
+      color: #4c8eaf;
+    }
+    .consultant-details {
+      margin-top: 15px;
+      padding-top: 10px;
+      border-top: 1px solid #4c8eaf;
+      display: none;
+      color: #333;
+    }
+    .consultant-details p {
+      margin: 5px 0;
+    }
+    .booking-btn {
+      margin-top: 10px;
+      padding: 8px 16px;
+      background-color: #4c8eaf;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    .booking-btn:hover {
+      background-color: #38778e;
+    }
+    .arrow {
+      font-size: 1.5rem;
+      transition: transform 0.3s ease;
+    }
+    .arrow.rotate {
+      transform: rotate(90deg);
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Teletherapy</h1>
+  </header>
+
+  <main>
+    <div class="info">
+      <p>MedMind’s teletherapy lets you speak to licensed mental health professionals securely and conveniently through online sessions. Our experts are available to help you with stress, anxiety, depression, and more—anytime, anywhere.</p>
+      <p>Choose your preferred therapist, schedule sessions, and attend from the comfort of your home.</p>
+    </div>
+
+    <button class="start-button" onclick="alert('Redirecting to booking system...')">Book a General Session</button>
+
+    <!-- Consultants Section -->
+    <section class="consultants">
+      <h2>List of Consultants</h2>
+
+      <div class="consultant-item">
+        <div class="consultant-header">
+          <div>
+            <div class="consultant-name">Dr. Aarti Sharma</div>
+            <div class="consultant-specialty">Clinical Psychologist</div>
+          </div>
+          <div class="arrow">&#9654;</div>
+        </div>
+        <div class="consultant-details">
+          <p><strong>Experience:</strong> 10+ years in anxiety and depression therapy.</p>
+          <p><strong>Suggested Exercises:</strong> Mindfulness meditation, breathing exercises, journaling.</p>
+          <p>Specializes in anxiety and depression therapy. Recommended for stress management.</p>
+          <button class="booking-btn" onclick="alert('Booking Dr. Aarti Sharma')">Book Appointment</button>
+        </div>
+      </div>
+
+      <div class="consultant-item">
+        <div class="consultant-header">
+          <div>
+            <div class="consultant-name">Dr. Rahul Verma</div>
+            <div class="consultant-specialty">Psychiatrist</div>
+          </div>
+          <div class="arrow">&#9654;</div>
+        </div>
+        <div class="consultant-details">
+          <p><strong>Experience:</strong> 15+ years managing mood disorders and medication.</p>
+          <p><strong>Suggested Exercises:</strong> Cognitive behavioral therapy, stress relief techniques.</p>
+          <p>Expert in medication management and therapy for mood disorders.</p>
+          <button class="booking-btn" onclick="alert('Booking Dr. Rahul Verma')">Book Appointment</button>
+        </div>
+      </div>
+
+      <div class="consultant-item">
+        <div class="consultant-header">
+          <div>
+            <div class="consultant-name">Ms. Neha Joshi</div>
+            <div class="consultant-specialty">Licensed Counselor</div>
+          </div>
+          <div class="arrow">&#9654;</div>
+        </div>
+        <div class="consultant-details">
+          <p><strong>Experience:</strong> 8+ years in cognitive behavioral therapy and stress relief.</p>
+          <p><strong>Suggested Exercises:</strong> Journaling, guided relaxation, goal setting.</p>
+          <p>Focuses on cognitive behavioral therapy and stress relief techniques.</p>
+          <button class="booking-btn" onclick="alert('Booking Ms. Neha Joshi')">Book Appointment</button>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Accordion toggle for consultants
+    const items = document.querySelectorAll('.consultant-item');
+
+    items.forEach(item => {
+      item.querySelector('.consultant-header').addEventListener('click', () => {
+        const details = item.querySelector('.consultant-details');
+        const arrow = item.querySelector('.arrow');
+        if (details.style.display === 'block') {
+          details.style.display = 'none';
+          arrow.classList.remove('rotate');
+        } else {
+          // Close other open items (optional)
+          items.forEach(i => {
+            i.querySelector('.consultant-details').style.display = 'none';
+            i.querySelector('.arrow').classList.remove('rotate');
+          });
+          details.style.display = 'block';
+          arrow.classList.add('rotate');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
